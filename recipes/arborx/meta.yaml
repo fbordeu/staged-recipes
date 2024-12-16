@@ -46,7 +46,7 @@ test:
 {% endif %}
 {% if cuda_major == 12 %}
     - cuda-cudart-dev
-    - cuda-driver-dev   # [not win]
+    - cuda-driver-dev  # [not win]
 {% endif %}
 
   commands:
@@ -59,15 +59,15 @@ test:
     - if not exist %LIBRARY_BIN%\\include\\ArborX\\ArborX.hpp exit 1  # [win]
   # Test example
     - cd examples/simple_intersection
-    - echo 'cmake_minimum_required(VERSION 3.16)' > tmp.txt # [linux or win]
-    - echo 'project(Test_ArborX CXX)' >> tmp.txt # [linux or win]
-    - echo 'find_package(CUDAToolkit REQUIRED COMPONENTS cudart cuda_driver)' >> tmp.txt # [cuda_compiler_version != "None" and unix]
-    - echo 'find_package(ArborX REQUIRED)' >> tmp.txt # [linux or win]
-    - cat CMakeLists.txt >> tmp.txt # [linux or win]
-    - mv tmp.txt CMakeLists.txt # [linux or win]
+    - echo 'cmake_minimum_required(VERSION 3.16)' > tmp.txt  # [linux or win]
+    - echo 'project(Test_ArborX CXX)' >> tmp.txt  # [linux or win]
+    - echo 'find_package(CUDAToolkit REQUIRED COMPONENTS cudart cuda_driver)' >> tmp.txt  # [cuda_compiler_version != "None" and unix]
+    - echo 'find_package(ArborX REQUIRED)' >> tmp.txt  # [linux or win]
+    - cat CMakeLists.txt >> tmp.txt  # [linux or win]
+    - mv tmp.txt CMakeLists.txt  # [linux or win]
     - cmake ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release  .  # [linux or win]
-    - cmake --build . # [linux or win]
-    - ./ArborX_Example_Intersection.exe # [linux]
+    - cmake --build .  # [linux or win]
+    - ./ArborX_Example_Intersection.exe  # [linux]
     - ArborX_Example_Intersection.exe  # [win]
 
 about:
