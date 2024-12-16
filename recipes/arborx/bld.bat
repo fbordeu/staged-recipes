@@ -3,11 +3,11 @@ setlocal EnableDelayedExpansion
 mkdir build
 if errorlevel 1 exit 1
 cmake . ^
-    -D CMAKE_INSTALL_PREFIX=$PREFIX$ ^
-    -D CMAKE_CXX_EXTENSIONS=OFF ^
+    -DCMAKE_INSTALL_PREFIX=$PREFIX$ ^
+    -DCMAKE_CXX_EXTENSIONS=OFF ^
     -S %SRC_DIR% ^
     -B build ^
-    -D ARBORX_ENABLE_MPI=OFF ^
+    -DARBORX_ENABLE_MPI=OFF ^
     %CMAKE_ARGS$ ^
     %CUDA_ARGS% :: only for CUDA-enabled Kokkos
 if errorlevel 1 exit 1
