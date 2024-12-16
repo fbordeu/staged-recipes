@@ -12,6 +12,8 @@ source:
 
 build:
   number: 0
+  script_env:
+    - CUDA_ARGS -DCMAKE_CXX_COMPILER=nvcc_wrapper  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
@@ -20,15 +22,10 @@ requirements:
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.16
     - kokkos >=4.3.0
-    - mpi
-    - openmpi-mpicc
     - make  # [not win]
   run:
     - kokkos >=4.3.0
-    - mpi
     - __cuda   # [cuda_compiler_version != "None"]
-  script_end:
-    - CUDA_ARGS=-DCMAKE_CXX_COMPILER="$(which nvcc_wrapper)"  # [cuda_compiler_version != "None"]
 
 test:
   commands:
@@ -39,7 +36,7 @@ test:
 about:
   home: https://github.com/arborx/ArborX/
   summary: This module provides the header-only open-source library ArborX.
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   license_url: https://github.com/arborx/ArborX/blob/master/LICENSE

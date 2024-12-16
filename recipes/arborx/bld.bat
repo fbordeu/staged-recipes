@@ -5,8 +5,8 @@ if errorlevel 1 exit 1
 cmake . ^
     -S %SRC_DIR% ^
     -B build ^
-    -D CMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
-    -D ARBORX_ENABLE_MPI=ON ^
+    -D ARBORX_ENABLE_MPI=OFF ^
+    %CMAKE_ARGS$ ^
     %CUDA_ARGS% :: only for CUDA-enabled Kokkos
 if errorlevel 1 exit 1
 cd build
