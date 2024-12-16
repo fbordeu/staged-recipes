@@ -1,14 +1,17 @@
 set -ex
 
-cmake . \
-    -B build \
+cmake \
+    -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+    -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_CXX_EXTENSIONS=OFF \
     -DARBORX_ENABLE_MPI=OFF \
-    ${CMAKE_ARGS} \
-    ${CUDA_ARGS} # only for CUDA-enabled Kokkos
+    -B build \
+    ${CUDA_ARGS} \
+    -S  ${SRC_DIR}
 
 cd build
-make -j1 # to have consistent logging
+cmake --build . -j1 # to have consistent logging
 
-make install
+cmake --install .
